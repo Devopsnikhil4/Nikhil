@@ -4,7 +4,7 @@ pipeline{
         SSHCRED = credentials('SSH_CRED')
     }
     stages {
-        stage('Ansible Dry Run') {
+        stage('Nikhil') {
             steps {
                 sh '''            
                     ansible-playbook Nikhil      

@@ -1,4 +1,4 @@
-- name: Creating EC2 for DryRun
+- name: Creating EC2 for createEC2
   hosts: localhost
   gather_facts: False
   vars:
@@ -6,6 +6,8 @@
     security_group_id: "sg-0d5ba8190c1247d9f"  # Update as per your security group id
     image: "ami-086dc92dc0617898a"             # Update this with the AMI ID in your account which has ansible installed.
     region: "us-east-1"
+    aws_access_key: "SSH_CRED"
+    aws_secret_key: "SSH_CRED"
   tasks:
     - name: Launching instance
       amazon.aws.ec2:

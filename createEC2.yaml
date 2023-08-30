@@ -1,10 +1,3 @@
-- name: Install bottle into the specified (virtualenv), inheriting globally installed modules
-  ansible.builtin.pip:
-      name:
-        - boto3
-        - botocore
-      executable: pip3
-
 - name: Provision EC2 Instance
   hosts: localhost
   gather_facts: False
@@ -33,6 +26,13 @@
         name: "{{ item.public_ip }}"
         groups: launched_instances
       with_items: "{{ ec2_instance.instances }}"
+
+- name: Install bottle into the specified (virtualenv), inheriting globally installed modules
+  ansible.builtin.pip:
+      name:
+        - boto3
+        - botocore
+      executable: pip3
 
 - name: Configure EC2 Instances
   hosts: launched_instances

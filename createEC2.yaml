@@ -1,21 +1,17 @@
-- name: Creating EC2 for createEC2
-  hosts: localhost
-  gather_facts: False
-  vars:
-    instance_type: "t3.micro"
-    security_group_id: "sg-0d5ba8190c1247d9f"  # Update as per your security group id
-    image: "ami-086dc92dc0617898a"             # Update this with the AMI ID in your account which has ansible installed.
-    region: "us-east-1"
-    
+- name: Play1  
+  hosts: all 
   tasks:
-    - name: Launching instance
-      amazon.aws.ec2:
-         count: 1
-         group_id: "{{ security_group_id }}"
-         instance_type: "{{ instance_type }}"
-         image: "{{ image }}"
-         wait: true
-         region: "{{ region }}"
-         instance_tags:
-          Name: ansible-createEC2
-      register: ec2        
+    - name: Printing Hello From Play1
+      ansible.builtin.debug:
+        msg: Hello from play1 of task1 
+
+    - name: Printing Hai From Play1
+      ansible.builtin.debug:
+        msg: Hai from play1 of task2 
+
+- name: Play2  
+  hosts: prod 
+  tasks:
+    - name: Printing Hai From Play2
+      ansible.builtin.debug:
+        msg: Hello from play2 of task1

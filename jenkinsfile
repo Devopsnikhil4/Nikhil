@@ -1,15 +1,17 @@
-pipeline{
+pipeline {
     agent any
+    
     environment {
-        SSHCRED = credentials('SSH_CRED')
+        AWS_ACCESS_KEY_ID     = credentials('AKIAQ2FAYNXYN5RM6XVG').accessKeyId
+        AWS_SECRET_ACCESS_KEY = credentials('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').secretKey
     }
+    
     stages {
-
-        stage('createEC2') {
+        stage('Create EC2 Instance') {
             steps {
-                sh '''            
-                    ansible-playbook createEC2.yaml
-                '''
+                script {
+                    sh "ansible-playbook -e 'aws_access_key=${AKIAQ2FAYNXYN5RM6XVG}' -e 'aws_secret_key=${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}' path/to/createEC2.yml"
+                }
             }
         }
     }

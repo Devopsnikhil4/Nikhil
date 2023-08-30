@@ -16,7 +16,7 @@
         image: "{{ ami_086dc92dc0617898a }}"
         instance_type: "{{ t2.micro }}"
         key_name: "{{ Nikhil }}"
-        security_groups: ["{{ Nikhil }}"]
+        security_groups: "{{ 0d5ba8190c1247d9f}}"
         subnet_id: "{{ 0d5ba8190c1247d9f }}"
         assign_public_ip: yes
         wait: yes

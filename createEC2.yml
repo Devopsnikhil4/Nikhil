@@ -4,8 +4,8 @@
   tasks:
     - name: Launch EC2 Instance
       ec2:
-        aws_access_key: "{{ AKIAQ2FAYNXYN5RM6XVG }}"
-        aws_secret_key: "{{ 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 }}"
+        aws_access_key: "{{ SSH_CRED }}"
+        aws_secret_key: "{{ SSH_CRED }}"
         key_name: "Nikhil"
         instance_type: "t2.micro"
         image: "ami-086dc92dc0617898a"

@@ -4,7 +4,7 @@ pipeline{
         SSHCRED = credentials('SSH_CRED')
     }
     stages {
-        stage('Nikhil') {
+        stage('createEC2') {
             steps {
                 sh '''            
                     ansible-playbook Nikhil      

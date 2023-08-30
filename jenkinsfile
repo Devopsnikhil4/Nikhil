@@ -4,6 +4,15 @@ pipeline{
         SSHCRED = credentials('SSH_CRED')
     }
     stages {
+
+        stage('install boto3') {
+            steps {
+                sh '''            
+                    pip3 install boto3
+                '''
+            }
+        }
+        
         stage('createEC2') {
             steps {
                 sh '''            

@@ -7,7 +7,7 @@ pipeline{
         stage('createEC2') {
             steps {
                 sh '''            
-                    ansible-playbook Nikhil      
+                    ansible-playbook createEC2.yaml
                 '''
             }
         }

@@ -1,0 +1,48 @@
+- name: Provision EC2 Instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    aws_region: us-east-1
+    instance_type: t2.micro
+    ami_id: ami-086dc92dc0617898a  # Replace with your desired AMI ID
+    key_pair: Nikhil  # Replace with your key pair name
+    security_group: Nikhil  # Replace with your security group name
+    subnet_id: subnet-0d5ba8190c1247d9f  # Replace with your subnet ID
+
+  tasks:
+    - name: Create EC2 Instance
+      ec2:
+        region: "{{ us-east-1 }}"
+        image: "{{ ami_086dc92dc0617898a }}"
+        instance_type: "{{ t2.micro }}"
+        key_name: "{{ Nikhil }}"
+        security_groups: ["{{ Nikhil }}"]
+        subnet_id: "{{ 0d5ba8190c1247d9f }}"
+        assign_public_ip: yes
+        wait: yes
+        count: 2
+      register: ec2_instance
+
+    - name: Add instance to host group
+      add_host:
+        name: "{{ item.public_ip }}"
+        groups: launched_instances
+      with_items: "{{ ec2_instance.instances }}"
+
+- name: Configure EC2 Instances
+  hosts: launched_instances
+  become: yes
+  gather_facts: True
+
+  tasks:
+    # Your configuration tasks for the newly provisioned EC2 instance go here.
+    # For example, you can install packages, configure services, etc.
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started

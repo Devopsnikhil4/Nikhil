@@ -1,17 +1,17 @@
-- name: Play1  
-  hosts: all 
+- name: Create EC2 Instance
+  hosts: localhost
+  gather_facts: no
   tasks:
-    - name: Printing Hello From Play1
-      ansible.builtin.debug:
-        msg: Hello from play1 of task1 
-
-    - name: Printing Hai From Play1
-      ansible.builtin.debug:
-        msg: Hai from play1 of task2 
-
-- name: Play2  
-  hosts: prod 
-  tasks:
-    - name: Printing Hai From Play2
-      ansible.builtin.debug:
-        msg: Hello from play2 of task1
+    - name: Launch EC2 Instance
+      ec2:
+        aws_access_key: "{{ AKIAQ2FAYNXYN5RM6XVG }}"
+        aws_secret_key: "{{ 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 }}"
+        key_name: "Nikhil"
+        instance_type: "t2.micro"
+        image: "ami-086dc92dc0617898a"
+        region: "us-east-1"
+        wait: yes
+        count: 1
+        instance_tags:
+          Name: "MyInstance"
+      register: ec2_instance

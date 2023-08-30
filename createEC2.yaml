@@ -12,12 +12,12 @@
   tasks:
     - name: Create EC2 Instance
       ec2:
-        region: "{{ us-east-1a }}"
-        image: "{{ ami_086dc92dc0617898a }}"
-        instance_type: "{{ t2.micro }}"
-        key_name: "{{ Nikhil }}"
-        security_groups: "{{ 0d5ba8190c1247d9f}}"
-        subnet_id: "{{ 0d5ba8190c1247d9f }}"
+        region: {{ us-east-1a }}
+        image: {{ ami_086dc92dc0617898a }}
+        instance_type: {{ t2.micro }}
+        key_name: {{ Nikhil }}
+        security_groups: {{ 0d5ba8190c1247d9f}}
+        subnet_id: {{ 0d5ba8190c1247d9f }}
         assign_public_ip: yes
         wait: yes
         count: 2

@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    environment {
+        SSHCRED = credentials('SSH_CRED')
+    }
+    stages {
+        stage('Ansible Dry Run') {
+            steps {
+                sh '''            
+                    ansible-playbook Nikhil      
+                '''
+            }
+        }
+    }
+}

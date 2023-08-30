@@ -18,22 +18,3 @@
          instance_tags:
           Name: ansible-createEC2
       register: ec2        
-
-
-- name: Configure EC2 Instances
-  hosts: launched_instances
-  become: yes
-  gather_facts: True
-
-  tasks:
-    # Your configuration tasks for the newly provisioned EC2 instance go here.
-    # For example, you can install packages, configure services, etc.
-    - name: Install Nginx
-      apt:
-        name: nginx
-        state: present
-
-    - name: Start Nginx service
-      service:
-        name: nginx
-        state: started
